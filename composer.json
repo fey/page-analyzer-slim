@@ -1,0 +1,15 @@
+{
+    "name": "feycot/page-analyzer",
+    "autoload": {
+        "psr-4": {
+            "Feycot\\PageAnalyzer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "feycot",
+            "email": "feycot@gmail.com"
+        }
+    ],
+    "require": {}
+}
