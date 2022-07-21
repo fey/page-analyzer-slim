@@ -1,11 +1,9 @@
 {
     "name": "feycot/page-analyzer",
     "autoload": {
-        "psr-4": {
-            "Feycot\\PageAnalyzer\\": "src/"
-        },
         "files": [
-            "src/config/schema.php"
+            "src/Schema.php",
+            "src/App.php"
         ]
     },
     "authors": [
@@ -22,12 +20,16 @@
         "php-di/php-di": "^6.4",
         "illuminate/database": "^9.21",
         "php-di/slim-bridge": "^3.2",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "twig/twig": "^3.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "imangazaliev/didom": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "*",
-        "symfony/var-dumper": "^6.1"
+        "symfony/var-dumper": "^6.1",
+        "selective/test-traits": "^2.2"
     },
     "config": {
         "allow-plugins": {

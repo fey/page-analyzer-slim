@@ -5,10 +5,10 @@ install:
 	composer install
 
 lint:
-	composer exec --verbose phpcs -- --standard=PSR12 public src tests
+	composer exec --verbose phpcs -- --standard=PSR12 public src templates tests
 
 lint-fix:
-	composer exec --verbose phpcbf -- --standard=PSR12 public src tests
+	composer exec --verbose phpcbf -- --standard=PSR12 public src templates tests
 
 test:
 	composer exec --verbose phpunit tests

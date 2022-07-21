@@ -1,15 +1,12 @@
 <?php
 
 use Psr\Container\ContainerInterface;
-use Slim\App;
 use Dotenv\Dotenv;
 use Slim\Factory\AppFactory;
+use Slim\Views\PhpRenderer;
 
 return [
-    App::class => function (ContainerInterface $c) {
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-
+    'app' => function (ContainerInterface $c) {
         $app = AppFactory::createFromContainer($c);
         $app->addErrorMiddleware(true, true, true);
 
@@ -30,4 +27,18 @@ return [
 
         return $capsule;
     },
+    'renderer' => function (ContainerInterface $c) {
+        $router = $c->get('router');
+
+        $renderer = new PhpRenderer(__DIR__ . '/templates', ['router' => $router]);
+        $renderer->setLayout('layout.phtml');
+
+        return $renderer;
+    },
+
+    'router' => function (ContainerInterface $c) {
+        $app = $c->get('app');
+
+        return $app->getRouteCollector()->getRouteParser();
+    }
 ];
