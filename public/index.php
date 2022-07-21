@@ -1,13 +1,17 @@
 <?php
 
+use DI\ContainerBuilder;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-use Slim\Factory\AppFactory;
+$builder = new ContainerBuilder();
+$builder->addDefinitions(__DIR__ . '/../dependencies.php');
+$container = $builder->build();
 
-$app = AppFactory::create();
-$app->addErrorMiddleware(true, true, true);
-
+$app = $container->get(Slim\App::class);
 $app->get('/', function ($request, $response) {
+    dump($this->get('db')->table('users')->select()->get());
     return $response->write('Welcome to Slim!');
 });
+
 $app->run();
