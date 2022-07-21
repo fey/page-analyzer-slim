@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a12d612be04a1a596fe3ad4cec0662f2",
+    "content-hash": "69f74893c868eb73169063fc9d809571",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -540,7 +540,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -595,7 +595,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -641,7 +641,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -692,7 +692,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -740,7 +740,7 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
@@ -808,7 +808,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -854,7 +854,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.21.4",
+            "version": "v9.21.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1356,47 +1356,6 @@
                 "source": "https://github.com/PHP-DI/PhpDocReader/tree/2.2.1"
             },
             "time": "2020-10-12T12:39:22+00:00"
-        },
-        {
-            "name": "php-di/slim-bridge",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHP-DI/Slim-Bridge.git",
-                "reference": "1644a2f31079e92a14cebbf90c7f71ebcbe39ee6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/Slim-Bridge/zipball/1644a2f31079e92a14cebbf90c7f71ebcbe39ee6",
-                "reference": "1644a2f31079e92a14cebbf90c7f71ebcbe39ee6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0",
-                "php-di/invoker": "^2.0.0",
-                "php-di/php-di": "^6.0.0",
-                "slim/slim": "^4.2.0"
-            },
-            "require-dev": {
-                "laminas/laminas-diactoros": "^2.1",
-                "phpunit/phpunit": ">= 7.0 < 10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DI\\Bridge\\Slim\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHP-DI integration in Slim",
-            "support": {
-                "issues": "https://github.com/PHP-DI/Slim-Bridge/issues",
-                "source": "https://github.com/PHP-DI/Slim-Bridge/tree/3.2.0"
-            },
-            "time": "2021-11-01T16:14:12+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3187,82 +3146,6 @@
             "time": "2022-06-27T17:24:16+00:00"
         },
         {
-            "name": "twig/twig",
-            "version": "v3.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e939eae92386b69b49cfa4599dd9bead6bf4a342",
-                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Twig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Twig Team",
-                    "role": "Contributors"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "https://twig.symfony.com",
-            "keywords": [
-                "templating"
-            ],
-            "support": {
-                "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.4.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-05-17T05:48:52+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v5.4.1",
             "source": {
@@ -3489,6 +3372,64 @@
             "time": "2022-03-03T08:28:38+00:00"
         },
         {
+            "name": "illuminate/testing",
+            "version": "v9.21.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/testing.git",
+                "reference": "e03e0cea096215ae693b8e3d808fa48302f7be71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/testing/zipball/e03e0cea096215ae693b8e3d808fa48302f7be71",
+                "reference": "e03e0cea096215ae693b8e3d808fa48302f7be71",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/collections": "^9.0",
+                "illuminate/contracts": "^9.0",
+                "illuminate/macroable": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^8.0.2"
+            },
+            "suggest": {
+                "brianium/paratest": "Required to run tests in parallel (^6.0).",
+                "illuminate/console": "Required to assert console commands (^9.0).",
+                "illuminate/database": "Required to assert databases (^9.0).",
+                "illuminate/http": "Required to assert responses (^9.0).",
+                "mockery/mockery": "Required to use mocking (^1.4.4).",
+                "phpunit/phpunit": "Required to use assertions and run tests (^9.5.8)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Testing\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Testing package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2022-07-14T13:59:10+00:00"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.11.0",
             "source": {
@@ -3546,6 +3487,83 @@
                 }
             ],
             "time": "2022-03-03T13:19:32+00:00"
+        },
+        {
+            "name": "nekofar/slim-test",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nekofar/slim-test.git",
+                "reference": "8029f4398ce7ae0cc446199cb7e6b939e0d92c30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nekofar/slim-test/zipball/8029f4398ce7ae0cc446199cb7e6b939e0d92c30",
+                "reference": "8029f4398ce7ae0cc446199cb7e6b939e0d92c30",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/testing": "^9.0",
+                "php": "^8.0",
+                "phpunit/phpunit": "^9.0",
+                "selective/test-traits": "^2.0",
+                "slim/psr7": "^1.0",
+                "slim/slim": "^4.0"
+            },
+            "require-dev": {
+                "ergebnis/phpstan-rules": "^1.0",
+                "ext-json": "*",
+                "nekofar/dev-tools": "^2.0",
+                "php-di/slim-bridge": "^3.0",
+                "phpstan/phpstan-strict-rules": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nekofar\\Slim\\Test\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milad Nekofar",
+                    "email": "milad@nekofar.com"
+                }
+            ],
+            "description": "Slim Framework test helper built on top of the PHPUnit test framework",
+            "keywords": [
+                "framework",
+                "php",
+                "phpunit",
+                "plugin",
+                "slim",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "issues": "https://github.com/nekofar/slim-test/issues",
+                "source": "https://github.com/nekofar/slim-test/tree/v2.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://unstoppabledomains.com/d/nekofar.crypto",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nekofar",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-04-28T17:12:39+00:00"
         },
         {
             "name": "nikic/php-parser",

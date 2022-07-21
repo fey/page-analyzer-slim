@@ -15,13 +15,23 @@ return [
     'config' => function () {
         return [
             'db' => [
-                'url' => $_ENV['DATABASE_URL'] ?? ''
+                'connection' => [
+                    'testing' => [
+                        'driver' => 'sqlite',
+                        'database' => __DIR__ . '/testing.sqlite',
+                    ],
+                    'pgsql' => [
+                        'url' => $_ENV['DATABASE_URL'] ?? ''
+                    ],
+                ],
             ]
         ];
     },
     'db' => function (ContainerInterface $c) {
+        $conn = $_ENV['DB_CONNECTION'];
         $capsule = new Illuminate\Database\Capsule\Manager();
-        $capsule->addConnection($c->get('config')['db']);
+        $connection = $c->get('config')['db']['connection'][$conn];
+        $capsule->addConnection($connection);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
 

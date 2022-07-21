@@ -4,6 +4,11 @@ start:
 install:
 	composer install
 
+prepare-db:
+	touch db.sqlite
+
+setup: prepare-db install
+
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 public src templates tests
 

@@ -1,44 +1,25 @@
 <?php
 
-namespace App\Test\TestCase\Action\Home;
+namespace Feycot\PageAnalyzer\Tests;
 
-use Fig\Http\Message\StatusCodeInterface;
-use PHPUnit\Framework\TestCase;
-use Selective\TestTrait\Traits\HttpTestTrait;
-use Selective\TestTrait\Traits\ContainerTestTrait;
+use Nekofar\Slim\Test\Traits\AppTestTrait;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 use function Feycot\PageAnalyzer\App\buildApp;
 
-class RootTest extends TestCase
+class RootTest extends BaseTestCase
 {
-    use ContainerTestTrait;
-    use HttpTestTrait;
+    use AppTestTrait;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        $this->app = buildApp();
+        $this->setUpApp(buildApp());
     }
 
-    public function testRoot(): void
+    public function testHomePage(): void
     {
-        $request = $this->createRequest('GET', '/');
-        $response = $this->app->handle($request);
-
-        // Assert: Redirect
-        $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
-    }
-
-    /**
-     * Test invalid link.
-     *
-     * @return void
-     */
-    public function testPageNotFound(): void
-    {
-        $request = $this->createRequest('GET', '/nada');
-        $response = $this->app->handle($request);
-
-        // Assert: Not found
-        $this->assertSame(StatusCodeInterface::STATUS_NOT_FOUND, $response->getStatusCode());
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Анализатор страниц');
     }
 }
