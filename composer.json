@@ -11,7 +11,14 @@
             "email": "feycot@gmail.com"
         }
     ],
+    "require": {
+        "slim/slim": "^4.10",
+        "slim/psr7": "^1.5",
+        "slim/http": "^1.2",
+        "slim/php-view": "^3.2",
+        "php-di/php-di": "^6.4"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9.5"
     }
 }
