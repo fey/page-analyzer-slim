@@ -23,7 +23,6 @@ class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
-        session_start();
         $this->setUpApp(buildApp());
 
         $builder = new ContainerBuilder();

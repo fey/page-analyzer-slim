@@ -7,6 +7,21 @@ use Slim\Views\PhpRenderer;
 return [
     'app' => function (ContainerInterface $c) {
         $app = AppFactory::createFromContainer($c);
+
+        $app->add(
+            function ($request, $next) {
+                // Start PHP session
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                }
+
+                // Change flash message storage
+                $this->get('flash')->__construct($_SESSION);
+
+                return $next->handle($request);
+            }
+        );
+
         $app->addErrorMiddleware(true, true, true);
 
         return $app;
