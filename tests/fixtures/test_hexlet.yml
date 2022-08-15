@@ -1,0 +1,59 @@
+
+-
+    request:
+        method: GET
+        url: 'http://test.hexlet'
+        headers:
+            Host: 'test.hexlet'
+            Accept-Encoding: ''
+            User-Agent: GuzzleHttp/7
+            Accept: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Host: 'test.hexlet'
+            Date: 'Mon, 15 Aug 2022 20:25:25 GMT'
+            Connection: close
+            X-Powered-By: PHP/8.1.6RC1
+            Content-type: 'text/html; charset=UTF-8'
+        body: "<!DOCTYPE html>\n\n<html lang='en'>\n    <head>\n        <title>Awesome page</title>\n        <meta name=\"description\" content=\"Statements of great people\">\n        <title>Test page</title>\n    </head>\n    <body>\n        <div>\n            <h1>Do not expect a miracle, miracles yourself!</h1>\n        </div>\n    </body>\n</html>\n"
+        curl_info:
+            url: 'http://test.hexlet/'
+            content_type: 'text/html; charset=UTF-8'
+            http_code: 200
+            header_size: 165
+            request_size: 66
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.032549
+            namelookup_time: 0.000479
+            connect_time: 0.000582
+            pretransfer_time: 0.000623
+            size_upload: 0.0
+            size_download: 322.0
+            speed_download: 10062.0
+            speed_upload: 0.0
+            download_content_length: -1.0
+            upload_content_length: -1.0
+            starttransfer_time: 0.032309
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 127.0.0.1
+            certinfo: {  }
+            primary_port: 8080
+            local_ip: 127.0.0.1
+            local_port: 41522
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 582
+            namelookup_time_us: 479
+            pretransfer_time_us: 623
+            redirect_time_us: 0
+            starttransfer_time_us: 32309
+            total_time_us: 32549

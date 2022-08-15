@@ -5,8 +5,8 @@ namespace Feycot\PageAnalyzer\App;
 use Carbon\Carbon;
 use DI\ContainerBuilder;
 use DiDom\Document;
-use Dotenv\Dotenv;
 use Slim\App as SlimApp;
+use Slim\Psr7\Request;
 
 function registerRoutes(SlimApp $app)
 {
@@ -20,7 +20,8 @@ function registerRoutes(SlimApp $app)
     })->setName('urls.index');
 
     $app->get('/urls/{id}', function ($request, $response, $params) {
-        $id = $params['id'];
+        $id = (int)$params['id'];
+
         $url = $this->get('db')->table('urls')->where('id', $id)->first();
         $checks = $this->get('db')->table('url_checks')
             ->distinct('url_id')
@@ -32,9 +33,10 @@ function registerRoutes(SlimApp $app)
         return $this->get('renderer')->render($response, 'urls/show.phtml', ['url' => $url, 'checks' => $checks]);
     })->setName('urls.show');
 
-    $app->post('/urls', function ($request, $response) {
+    $app->post('/urls', function (Request $request, $response) {
         // TODO: validation
-        $params = $request->getParsedBodyParam('url');
+        $requestBody = $request->getParsedBody();
+        $params = $requestBody['url'];
         $parsedUrl = parse_url($params['name']);
         $schema = $parsedUrl['scheme'];
         $normalizedUrl = mb_strtolower("{$schema}://{$parsedUrl['host']}");
@@ -88,6 +90,8 @@ function buildApp(): SlimApp
     $builder->addDefinitions(__DIR__ . '/../dependencies.php');
     $container = $builder->build();
     $app = $container->get('app');
+    $container->get('db');
+
     registerRoutes($app);
 
     return $app;

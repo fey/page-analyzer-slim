@@ -16,6 +16,10 @@ return [
         return [
             'db' => [
                 'connection' => [
+                    'development' => [
+                        'driver' => 'sqlite',
+                        'database' => __DIR__ . '/development.sqlite',
+                    ],
                     'testing' => [
                         'driver' => 'sqlite',
                         'database' => __DIR__ . '/testing.sqlite',
