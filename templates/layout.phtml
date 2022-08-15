@@ -27,6 +27,17 @@
             </div>
         </nav>
     </header>
+
+    <?php if ($flash) : ?>
+        <?php foreach ($flash as $flashType => $messages) : ?>
+        <div class="alert alert-<?= $flashType ?>" role="alert">
+            <?php foreach ($messages as $message) : ?>
+              <?= $message ?>
+            <?php endforeach; ?>
+        </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
     <main class="flex-grow-1">
         <div class="container-lg mt-3">
             <?= $content ?>

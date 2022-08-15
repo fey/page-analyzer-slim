@@ -1,7 +1,6 @@
 <?php
 
 use Psr\Container\ContainerInterface;
-use Dotenv\Dotenv;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 
@@ -54,5 +53,9 @@ return [
         $app = $c->get('app');
 
         return $app->getRouteCollector()->getRouteParser();
+    },
+
+    'flash' => function () {
+        return new \Slim\Flash\Messages();
     }
 ];

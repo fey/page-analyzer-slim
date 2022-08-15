@@ -5,18 +5,27 @@ namespace Feycot\PageAnalyzer\App;
 use Carbon\Carbon;
 use DI\ContainerBuilder;
 use DiDom\Document;
+use Exception;
+use Psr\Http\Message\ResponseInterface;
 use Slim\App as SlimApp;
+use Feycot\PageAnalyzer\UrlValidator;
+use GuzzleHttp\Exception\GuzzleException;
+use Slim\Http\ServerRequest;
 use Slim\Psr7\Request;
 
 function registerRoutes(SlimApp $app)
 {
     $app->get('/', function ($request, $response) {
-        return $this->get('renderer')->render($response, 'root.phtml');
+        $flash = $this->get('flash')->getMessages();
+
+        return $this->get('renderer')->render($response, 'root.phtml', ['flash' => $flash]);
     })->setName('root');
 
     $app->get('/urls', function ($request, $response) {
         $urls = $this->get('db')->table('urls')->select()->get();
-        return $this->get('renderer')->render($response, 'urls/index.phtml', ['urls' => $urls]);
+        $flash = $this->get('flash')->getMessages();
+
+        return $this->get('renderer')->render($response, 'urls/index.phtml', ['urls' => $urls, 'flash' => $flash]);
     })->setName('urls.index');
 
     $app->get('/urls/{id}', function ($request, $response, $params) {
@@ -30,14 +39,25 @@ function registerRoutes(SlimApp $app)
             ->get()
             ->keyBy('url_id');
 
-        return $this->get('renderer')->render($response, 'urls/show.phtml', ['url' => $url, 'checks' => $checks]);
+        $flash = $this->get('flash')->getMessages();
+        return $this->get('renderer')->render($response, 'urls/show.phtml', [
+            'url' => $url,
+            'checks' => $checks,
+            'flash' => $flash
+        ]);
     })->setName('urls.show');
 
-    $app->post('/urls', function (Request $request, $response) {
-        // TODO: validation
+    $app->post('/urls', function (ServerRequest|Request $request, ResponseInterface $response) {
         $requestBody = $request->getParsedBody();
-        $params = $requestBody['url'];
-        $parsedUrl = parse_url($params['name']);
+        $urlName = $requestBody['url']['name'];
+
+        $errors = UrlValidator::validate($urlName);
+
+        if ($errors) {
+            throw new Exception($errors);
+        }
+
+        $parsedUrl = parse_url($urlName);
         $schema = $parsedUrl['scheme'];
         $normalizedUrl = mb_strtolower("{$schema}://{$parsedUrl['host']}");
         $url = $this->get('db')->table('urls')->where('name', $normalizedUrl)->first();
@@ -53,15 +73,23 @@ function registerRoutes(SlimApp $app)
         }
 
         $url = $this->get('router')->urlFor('urls.show', ['id' => $id]);
+
+        $this->get('flash')->addMessage('success', 'Url успешно добавлен');
         return $response->withRedirect($url);
     })->setName('urls.store');
 
     $app->post('/urls/{url_id}/checks', function ($request, $response, $params) {
         $id = $params['url_id'];
+        $redirectRoute = $this->get('router')->urlFor('urls.show', ['id' => $id]);
         $url = $this->get('db')->table('urls')->find($id);
 
-        $client = new \GuzzleHttp\Client();
-        $body = $client->get($url->name)->getBody()->getContents();
+        try {
+            $client = new \GuzzleHttp\Client();
+            $body = $client->get($url->name)->getBody()->getContents();
+        } catch (GuzzleException) {
+            $this->get('flash')->addMessage('danger', 'Произошла ошибка при проверке');
+            return $response->withRedirect($redirectRoute);
+        }
 
         $document = new Document($body);
         $h1 = optional($document->first('h1'))->text();
@@ -78,9 +106,8 @@ function registerRoutes(SlimApp $app)
         ];
 
         $this->get('db')->table('url_checks')->insert($data);
-
-        $url = $this->get('router')->urlFor('urls.show', ['id' => $id]);
-        return $response->withRedirect($url);
+        $this->get('flash')->addMessage('success', 'Url успешно проверен');
+        return $response->withRedirect($redirectRoute);
     })->setName('urls.checks.store');
 }
 
