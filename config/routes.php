@@ -2,30 +2,28 @@
 
 use Carbon\Carbon;
 use DiDom\Document;
-use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Feycot\PageAnalyzer\UrlValidator;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Arr;
 use Slim\Http\Response;
-use Slim\Http\ServerRequest;
 use Slim\Psr7\Request;
 
 /** @var App $app */
-$app->get('/', function ($request, $response) {
+$app->get('/', function (Request $request, Response $response): Response {
     $flash = $this->get('flash')->getMessages();
 
     return $this->get('renderer')->render($response, 'root.phtml', ['flash' => $flash]);
 })->setName('root');
 
-$app->get('/urls', function ($request, $response) {
+$app->get('/urls', function (Request $request, Response $response) {
     $urls = $this->get('db')->table('urls')->select()->get();
     $flash = $this->get('flash')->getMessages();
 
     return $this->get('renderer')->render($response, 'urls/index.phtml', ['urls' => $urls, 'flash' => $flash]);
 })->setName('urls.index');
 
-$app->get('/urls/{id}', function ($request, Response $response, $params) {
+$app->get('/urls/{id}', function (Request $request, Response $response, $params): Response {
     $id = (int)$params['id'];
 
     $url = $this->get('db')->table('urls')->where('id', $id)->first();
@@ -48,7 +46,7 @@ $app->get('/urls/{id}', function ($request, Response $response, $params) {
     ]);
 })->setName('urls.show');
 
-$app->post('/urls', function (ServerRequest|Request $request, ResponseInterface $response) {
+$app->post('/urls', function (Request $request, Response $response): Response {
     $requestBody = $request->getParsedBody();
     $urlName = Arr::get($requestBody, 'url.name');
 
@@ -79,7 +77,7 @@ $app->post('/urls', function (ServerRequest|Request $request, ResponseInterface 
     return $response->withRedirect($url);
 })->setName('urls.store');
 
-$app->post('/urls/{url_id}/checks', function ($request, $response, $params) {
+$app->post('/urls/{url_id}/checks', function (Request $request, Response $response, array $params): Response {
     $id = $params['url_id'];
     $redirectRoute = $this->get('router')->urlFor('urls.show', ['id' => $id]);
     $url = $this->get('db')->table('urls')->find($id);
