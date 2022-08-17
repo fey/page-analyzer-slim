@@ -32,11 +32,11 @@ return [
                 'connection' => [
                     'development' => [
                         'driver' => 'sqlite',
-                        'database' => __DIR__ . '/development.sqlite',
+                        'database' => __DIR__ . '/../database/development.sqlite',
                     ],
                     'testing' => [
                         'driver' => 'sqlite',
-                        'database' => __DIR__ . '/testing.sqlite',
+                        'database' => __DIR__ . '/../database/testing.sqlite',
                     ],
                     'pgsql' => [
                         'url' => $_ENV['DATABASE_URL'] ?? ''
@@ -50,26 +50,22 @@ return [
         $capsule = new Illuminate\Database\Capsule\Manager();
         $connection = $c->get('config')['db']['connection'][$conn];
         $capsule->addConnection($connection);
-        $capsule->setAsGlobal();
-        $capsule->bootEloquent();
 
         return $capsule;
     },
     'renderer' => function (ContainerInterface $c) {
         $router = $c->get('router');
 
-        $renderer = new PhpRenderer(__DIR__ . '/templates', ['router' => $router]);
+        $renderer = new PhpRenderer(__DIR__ . '/../templates', ['router' => $router]);
         $renderer->setLayout('layout.phtml');
 
         return $renderer;
     },
-
     'router' => function (ContainerInterface $c) {
         $app = $c->get('app');
 
         return $app->getRouteCollector()->getRouteParser();
     },
-
     'flash' => function () {
         return new \Slim\Flash\Messages();
     }
